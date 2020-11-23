@@ -1,13 +1,17 @@
 # 常用loader
+
 - 一些常用的loader以及用法和作用  
 
 **loader是从右向左，从下到上加载执行**
 
 ## css 相关
+
 - css-loader 用来处理import url等css
 - style-loader 用来把CSS通过style插入到header中
 - less-loader 处理less 预处理器
 - sass-loader 处理sass 预处理器
+
+
 ```
   module.export = {
     module = {
@@ -76,7 +80,7 @@
 - babel/preset-react react插件的babel预设
 - babel/polyfill
 
-```
+```js
   module.export = {
     module = {
       rules: [
@@ -86,7 +90,9 @@
             {
               loader: 'babel-loader',
               options: {
-                "@babel/preset-env", //可以转换JS语法，把高级转换成低级
+                ["@babel/preset-env", {// 可以配置参数，会传递到preset-env中
+                  useBuiltIns: 'usage // 按需加载polyfill
+                }], //可以转换JS语法，把高级转换成低级
                 "@bebel/preset-react" //可以处理react语法
               },
               plugins: [ // 插件
@@ -95,6 +101,28 @@
               ]
             }
           ]
+        }
+      ]
+    }
+  }
+```
+
+## 代码校验
+
+- eslint 核心包
+- eslint-loader 转换器
+
+```js
+  module.export = {
+    module = {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          use: "eslint-loader",
+          enforce: "pre", //强制指定顺序 先进行代码校验，在去编译
+          options: {fix: true}, //自动修复
+          exclude: /node_modules/, //排除校验
+          include: resolve(__dirname, src) // 只检查src里面的目录
         }
       ]
     }
