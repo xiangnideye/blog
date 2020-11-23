@@ -4,20 +4,20 @@
 - webpack可以自动给我source-map文件，map文件是一种对应编译文件和源文件的方法
 
 **关键词**
-1. source-mapx
+1. source-mapx - 4
   - 产生.map文件(包含行，列信息)
-2. eval 
+2. eval - 3
   - 把代码通过eval包裹起来
-3. cheap
+3. cheap - 1
   - 不包含列信息，没有源文件映射。只有编译过后的代码
-4. module
+4. module - 2
   - 包含loader的source-map。可以找到源文件。可以找到源文件的信息
 5. inline
   - 内嵌到打包后的文件里面
 
-devtool: 
+> devtool: 
 inline-source-map /
 cheap-source-map /
 cheap-module-source-map /
+eval-source-map /
 source-map /
-eval-source-map
