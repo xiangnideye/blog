@@ -10,26 +10,30 @@ module.exports = {
         items: [
           {
             text: 'CSS',
-            link: '/CSS/'
+            link: '/css/'
           },
           {
             text: 'Vue',
-            link: '/Vue/'
+            link: '/vue/'
           },
           {
             text: 'Node',
-            link: '/Node/'
+            link: '/node/'
           },
           {
             text: 'React',
-            link: '/React/'
+            link: '/react/'
+          },
+          {
+            text: 'webpack',
+            link: '/webpack/'
           }
         ]
       }
     ],
     // 为以下路由添加侧边栏
     sidebar: {
-      '/CSS/': [
+      '/css/': [
         {
           title: 'CSS',
           collapsable: false,
@@ -39,7 +43,7 @@ module.exports = {
           ]
         }
       ],
-      '/Vue/': [
+      '/vue/': [
         {
           title: 'Vue',
           collapsable: false,
@@ -49,7 +53,7 @@ module.exports = {
           ]
         }
       ],
-      '/Node/': [
+      '/node/': [
         {
           title: 'Node',
           collapsable: false,
@@ -65,12 +69,23 @@ module.exports = {
           ]
         }
       ],
-      '/React/': [
+      '/react/': [
         {
           title: 'React',
           collapsable: false,
           children: [
             'react-1'
+          ]
+        }
+      ],
+      '/webpack/': [
+        {
+          title: 'Webpack',
+          collapsable: false,
+          children: [
+            'webpack-init',
+            'dev-server',
+            'loader'
           ]
         }
       ]
