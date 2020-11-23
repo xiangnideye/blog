@@ -1,6 +1,7 @@
+const path = require('path');
 module.exports = {
   title: "张胤笔记",
-  base : '/',
+  base : './',
   themeConfig: {
     // 添加导航栏
     nav: [
