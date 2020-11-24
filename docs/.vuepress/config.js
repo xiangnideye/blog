@@ -74,7 +74,8 @@ module.exports = {
           title: 'React',
           collapsable: false,
           children: [
-            'react-1'
+            'init',
+            'component'
           ]
         }
       ],
