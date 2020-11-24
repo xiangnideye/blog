@@ -86,7 +86,8 @@ module.exports = {
             'webpack-init',
             'dev-server',
             'loader',
-            'source-map'
+            'source-map',
+            'third'
           ]
         }
       ]

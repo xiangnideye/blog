@@ -12,7 +12,7 @@
 - sass-loader 处理sass 预处理器
 
 
-```
+```js
   module.export = {
     module = {
       rules: [
@@ -39,7 +39,7 @@
 - url-loader 是对file-loader的增强，可以指定当文件小于多少之后 采用Base64的形式插入
 - html-loader  处理在HTML中引入的图片并且src中是相对路径
 
-```
+```js
   module.export = {
     module = {
       rules: [

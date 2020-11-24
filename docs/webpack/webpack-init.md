@@ -33,7 +33,7 @@
 
 **预设是插件的集合，预设包含了很多的插件。**
 
-```
+```js
   module.export = {
     module: {
       rules: [
@@ -65,7 +65,7 @@
 ## mode 模式
 - 用来指定当前的运行模式 开发环境 development，生产环境 production，不指定环境
 
-```
+```js
   module.export = {
     mode: 'development'
   }
@@ -74,12 +74,17 @@
 ## plugins 插件
 - 用来执行范围更广的任务，包括打包优化，资源管理，注入环境变量等
 
-```
+```js
   module.export = {
     plugins: [
       new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'name'
+      }),
+      new webpack.DefinePlugin({
+        DEVELOPMENT: '',
+        VERSION: '1',
+        EXPRESSION: '1+2'
       })
     ]
   }

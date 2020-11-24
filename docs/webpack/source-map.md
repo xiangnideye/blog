@@ -14,6 +14,8 @@
   - 包含loader的source-map。可以找到源文件。可以找到源文件的信息
 5. inline
   - 内嵌到打包后的文件里面
+6. hidden-source-map
+  - 隐藏，生产环境使用。可以生产map文件。但是不显示
 
 > devtool: 
 inline-source-map /

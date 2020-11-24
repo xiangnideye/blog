@@ -3,13 +3,13 @@
 
 [官方链接：devServer](https://www.webpackjs.com/configuration/dev-server/#devserver)
 
-```
+```js
 package.json: npm run start 启动的区别 
   webpack4: "start": "webpack-dev-serve"  
   webpack5: "start": "webpack serve"
 ```
 
-```
+```js
   module.export = {
     devServer: {
       contentBase: resolve(__dirname, 'dist'), // 静态根目录
