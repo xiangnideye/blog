@@ -41,3 +41,14 @@
   );
 ```
 
+## Ref
+
+- Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法中创建的 React 元素
+- 可以使用 ref 去存储 DOM 节点的引用
+- 当 ref 属性用于 HTML 元素时，构造函数中使用 React.createRef() 创建的 ref 接收底层 DOM 元素作为其 current 属性
+
+```js
+  const ref = React.createRef();
+```
+
+
