@@ -75,7 +75,8 @@ module.exports = {
           collapsable: false,
           children: [
             'init',
-            'component'
+            'component',
+            'state'
           ]
         }
       ],
