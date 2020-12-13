@@ -1,28 +1,24 @@
-const path = require('path');
+
 module.exports = {
   title: "张胤笔记",
+  description: '积累，就是坚持的过程',
   base : '/',
   themeConfig: {
     // 添加导航栏
     nav: [
+      { text: 'Vue', link: '/vue/' },
+      { text: 'React', link: '/react/' },
+      { text: 'TypeScript', link: '/typescript/' },
       {
-        text: `let's go`,
+        text: `更多`,
         items: [
           {
             text: 'CSS',
             link: '/css/'
           },
           {
-            text: 'Vue',
-            link: '/vue/'
-          },
-          {
             text: 'Node',
             link: '/node/'
-          },
-          {
-            text: 'React',
-            link: '/react/'
           },
           {
             text: 'webpack',
@@ -80,13 +76,23 @@ module.exports = {
           ]
         }
       ],
+      '/typescript/': [
+        {
+          title: 'typescript',
+          collapsable: false,
+          children: [
+            'type1',
+            'type2'
+          ]
+        }
+      ],
       '/webpack/': [
         {
           title: 'Webpack',
           collapsable: false,
           children: [
-            'webpack-init',
-            'dev-server',
+            'init',
+            'server',
             'loader',
             'source-map',
             'third'

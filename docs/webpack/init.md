@@ -89,3 +89,24 @@
     ]
   }
 ```
+
+## 环境变量配置
+
+- 环境变量分为两种，一种是在内部模块使用的变量，一种是在node环境下使用的变量（也就是在webpack.config.js）里面的变量
+- webpack执行的时候，mode默认值是production，它内部模块可以读到
+  - 也可以通过在package.json中通过--mode来设置mode的值
+  - 可以通过--env传参的方法来给webpack配置文件中导出的函数作为参数传递
+
+
+## CSS浏览器兼容
+
+- 查看css对各个浏览器版本的网站： [caniuse](https://www.caniuse.com/)
+- postcss-loader
+
+## CSS JS HTML 压缩
+
+## px自动转换rem
+
+- px2rem-loader
+- lib-flexible
+- px2rem
