@@ -1,6 +1,19 @@
 # 进阶配置
 
-## 断言
+## 函数的重载
+
+```js
+定义多个声明，然后根据传递的不同参数执行不同的方法
+function toArray(value:number):number
+function toArray(value:string):string
+function toArray(value:number|string) {
+  if(typoe value == 'string') {
+    return 'string'
+  }else if (typeof value == 'number') {
+    return 111
+  }
+}
+```
 
 ## 接口
 

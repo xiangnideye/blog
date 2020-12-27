@@ -25,7 +25,7 @@
   let arr:number[] = [1, 2, 3];
 ```
 
-## 元素类型
+## 元组类型
 
 - 元组类型，数量和类型已知的数组
 ```js
@@ -52,6 +52,8 @@
   }
   // 不可改变
   console.log(Colors.RED, Colors.YELLOW, Colors.Blue) // 0, 1, 2
+
+  枚举会生成一个对象，常量枚举只有值
 ```
 
 ## any类型
@@ -103,6 +105,7 @@
 ## void
 
 - void代表没有任何类型
+- 只能接收null和undefined
 - 场景：函数没有返回值
 - void 和 never的区别
   - void可以被赋值为null或undefined，never不能包含任何类型
@@ -148,6 +151,8 @@
   console.log((name as number).toFixed(2)); // 断言成number
   双重断言
   (name as any as boolean)
+  name!.toString(); 非空断言！代表了不为空
+  name?.toString(); name && name.toString(); 并且的意思
 ```
 
 ## 字面量类型和类型字面量
@@ -173,3 +178,4 @@
 
   }
 ```
+

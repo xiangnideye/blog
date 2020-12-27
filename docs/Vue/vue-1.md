@@ -863,6 +863,14 @@ function updateProperties(vnode, oldProps = {}) {
 
 ### diff中的优化策略
 
+- diff比较主要采用双指针的策略
+  1. 先是采用了头头，尾尾，头尾，尾头四种方式进行同级比较
+  2. 头头，尾尾是指针往后移动；头尾和尾头是把元素向前或者向后插入
+  3. 乱序是针对老虚拟DOM有一个映射表。存着节点的KEY和对应的索引，然后拿新节点去映射表里查找，如果没有就创建新的在老的开始的指针，如果有就把老的节点移动，之前的位置放一个null
+- 为什么要有key
+  1. 因为key是存在一个比较的过程，如果标签一样，key一样，就会认为比较的两个节点是相同的节点，而不是找到真正的两个相同的节点
+  2. 如果里面的子节点或者文本不同就会创建新的文本或者子节点。而不是移动复用
+
 ```js
 function isSameVnode(oldV, newV) {
   return (oldV.tag == newV.tag) && (oldV.key == newV.key)
@@ -877,8 +885,20 @@ function updateChildren(parent, oldChildren, newChildren) {
   let newStartVnode = newChildren[0];
   let newEndVnode = newChildren[newEndIndex];
 
+  let map = markIndexByKey(oldChildren);
+  function markIndexByKey(oldChildren) {
+    let map = {};
+    oldChildren.forEach((item, index) => {
+      map[item.key] = index
+    })
+  }
+
   whild(oldStartIndex <= oldEndIndex && newEndIndex <= newEndIndex) {
-    if(isSameVnode(oldStartVnode, newStartVnode)) {
+    if(!oldStartVnode) {
+      oldStartVnode = oldChildren[++oldStartIndex];
+    }else if (!oldEndVnode) {
+      oldEndVnode = oldChildren[--oldEndIndex];
+    }else if(isSameVnode(oldStartVnode, newStartVnode)) {
       patch(oldStartVnode, newStartVnode);
       oldStartVnode = oldChildren[++oldStartIndex];
       newStartVnode = newChildren[++newStartIndex];
@@ -897,7 +917,17 @@ function updateChildren(parent, oldChildren, newChildren) {
       oldEndVnode = oldChildren[--oldEndIndex];
       newStartVnode = newChildren[++newStartIndex];
     }else {
-      
+      let moveIndex = map[newStartVnode.key];
+      // 如果没有找到 创建新的节点插入到老节点的第一个的前面
+      if(moveIndex != undefined) {
+        parent.insertBefore(createElm(newStartVnode), oldStartVnode.el)
+      }else {
+        let moveVnode = oldChildren[moveIndex];
+        oldChildren[moveIndex] = null;
+        patch(moveVnode, newStartVnode);
+        parent.insertBefore(moveVnode.el, oldStartVnode.el);
+      }
+      newStartVnode = newChildren[++newStateIndex];
     }
   }
   if(newStartIndex <= newEndIndex) {
@@ -906,11 +936,16 @@ function updateChildren(parent, oldChildren, newChildren) {
       parent.insertBefore(createElm(newChildren[i]))
     })
   }
+  if(oldStartIndex <= oldEndIndex) {
+    for(let i = oldStartIndexl i<= oldEndIndex; i++) {
+      let child = oldChildren[i];
+      if(child != undefined) {
+        parent.removeChild(child.el)
+      }
+    }
+  }
 
 }
 ```
 
 
-##
-
-##
