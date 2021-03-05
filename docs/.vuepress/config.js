@@ -41,11 +41,18 @@ module.exports = {
       ],
       '/vue/': [
         {
-          title: 'Vue',
+          title: 'Vue2',
           collapsable: false,
           children: [
-            'vue-1',
-            'vue-2'
+            'vue1',
+            'vue2'
+          ]
+        },
+        {
+          title: 'Vue3',
+          collapsable: false,
+          children: [
+            '3reactive'
           ]
         }
       ],
