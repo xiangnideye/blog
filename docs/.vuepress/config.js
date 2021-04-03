@@ -1,5 +1,6 @@
 
 module.exports = {
+  port: '3000',
   title: "张胤笔记",
   description: '积累，就是坚持的过程',
   base : '/',
@@ -61,16 +62,13 @@ module.exports = {
           title: 'Node',
           collapsable: false,
           children: [
-            'http'
+            'http',
+            'promise',
+            'event',
+            'common.js',
+            'eventLoop'
           ]
         },
-        {
-          title: 'Promise, async, await',
-          collapsable: false,
-          children: [
-            'promise'
-          ]
-        }
       ],
       '/react/': [
         {
@@ -89,7 +87,8 @@ module.exports = {
           collapsable: false,
           children: [
             'type1',
-            'type2'
+            'type2',
+            'type3',
           ]
         }
       ],
@@ -99,10 +98,7 @@ module.exports = {
           collapsable: false,
           children: [
             'init',
-            'server',
             'loader',
-            'source-map',
-            'third'
           ]
         }
       ]
