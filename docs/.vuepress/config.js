@@ -1,5 +1,6 @@
 
 module.exports = {
+  port: '3000',
   title: "张胤笔记",
   description: '积累，就是坚持的过程',
   base : '/',

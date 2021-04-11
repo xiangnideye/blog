@@ -1,73 +1,12 @@
 # 进阶配置
 
-## 函数的重载
+## 类型别名
+- 用来给一个类型起一个新的名字，一般用于联合类型
 
 ```js
-定义多个声明，然后根据传递的不同参数执行不同的方法
-function toArray(value:number):number
-function toArray(value:string):string
-function toArray(value:number|string) {
-  if(typoe value == 'string') {
-    return 'string'
-  }else if (typeof value == 'number') {
-    return 111
-  }
-}
+  type TName = number | string
+  let name: TName = 123
 ```
-
-## 接口
-
-- 同名的接口可以写多个，类型会自动合并
-
-
-```js
-  interface Speakable {
-    name: string;
-    speak():void
-  }
-
-  let speakMan: Speakable = {
-    name: 'zy',
-    speak() {}
-  }
-
-  // 任意属性
-  interface Person {
-    name: string,
-    [key:string]:any
-  }
-
-  let p: Person = {
-    name: 'str',
-    age: 10
-  }
-  
-  // 接口的继承
-  interface b {
-    spear(): void
-  }
-
-  interface a extends b {
-    eat(): void
-  }
-
-  class ChineseMan implements a {
-    spear(): void {}
-    eat(): void {}
-  }
-
-  // 函数类型接口
-  interface Dis {
-    (arg: number): number
-  }
-  const add = (arg: number):number => return arg
-
-  // 描述构造函数
-  interface Dis {
-    new(arg: number): number 用来描述类的，也就是构造函数
-  }
-```
-
 ## 泛型
 
 ```js
@@ -77,4 +16,51 @@ function toArray(value:number|string) {
   }
   createList<number>(10)
   <number>会传递给<T>, T相当于是一个变量，接收函数执行的时候传递过来的值，然后函数整体都可以使用这个T
+```
+
+### 元组类型
+
+- 元组类型，数量和类型已知的数组
+```js
+  let arr:[string, number] = ['str', 'number'];
+  位置和类型固定
+```
+
+### 枚举类型
+
+```js
+  // 普通枚举
+  enum Gender {
+    GIRL,
+    BOY
+  }
+  console.log(Gender[BOY], Gender[0]) // 1, GIRL
+  console.log(Gender[GIRL], Gender[1]) // 0, BOY
+
+  // 常量枚举
+  const Colors {
+    RED,
+    YELLOW,
+    Blue
+  }
+  // 不可改变
+  console.log(Colors.RED, Colors.YELLOW, Colors.Blue) // 0, 1, 2
+
+  枚举会生成一个对象，常量枚举只有值
+```
+
+
+### never类型
+
+- 代表不会出现的值
+- 1. 作为不会返回的函数的返回值
+
+```js
+  function err (message:str):never {
+    throw new Error('error');
+    console.log('err') // 永远也不会执行的代码
+  }
+
+  while(true){}
+  console.log('start') // 永远也不会执行的代码 
 ```
