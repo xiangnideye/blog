@@ -61,16 +61,18 @@ module.exports = {
           title: 'Node',
           collapsable: false,
           children: [
-            'http'
+            'http',
+            'promise',
+            'event'
           ]
         },
-        {
-          title: 'Promise, async, await',
-          collapsable: false,
-          children: [
-            'promise'
-          ]
-        }
+        // {
+        //   title: 'Promise, async, await',
+        //   collapsable: false,
+        //   children: [
+        //     'promise'
+        //   ]
+        // }
       ],
       '/react/': [
         {
@@ -89,7 +91,8 @@ module.exports = {
           collapsable: false,
           children: [
             'type1',
-            'type2'
+            'type2',
+            'type3',
           ]
         }
       ],
