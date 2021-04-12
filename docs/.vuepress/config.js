@@ -64,16 +64,11 @@ module.exports = {
           children: [
             'http',
             'promise',
-            'event'
+            'event',
+            'common.js',
+            'eventLoop'
           ]
         },
-        // {
-        //   title: 'Promise, async, await',
-        //   collapsable: false,
-        //   children: [
-        //     'promise'
-        //   ]
-        // }
       ],
       '/react/': [
         {
