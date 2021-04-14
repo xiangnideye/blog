@@ -101,7 +101,8 @@ module.exports = {
             'server',
             'loader',
             'source-map',
-            'third'
+            'third',
+            'babel'
           ]
         }
       ]
