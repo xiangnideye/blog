@@ -70,6 +70,29 @@
     mode: 'development'
   }
 ```
+- 命令行参数
+  1. --mode 用来设置模块内部process.env.NODE_ENV
+  2. --env 用来设置webpack.config.js配置文件的函数参数
+  3. corss-env 用来设置node环境的process.evn.NODE_ENV
+  4. webpack.DefinePlugin 用来设置全局的变量
+
+```js
+{
+  "npm run build": "webpack --mode development/production"
+  // 执行之后在webpack.config.js中拿不到process.env.NODE_ENV,但是可以在别的模块中拿到
+
+  "npm run build": "webpack --env development/production"
+  // 执行后可以在webpack.config.js中拿到，但是需要把module.exports = (env) => {}的返回值变成一个函数来获取形参中的值 
+
+  new webpack.DefinePlugin({
+    'test': JSON.stringify('test')
+  })
+  // 可以在index.js模块中 打印test就可以获取变量值，一定要加JSON.stringify如果不加会变成变量
+
+  "npm run build": "cross NODE_EVN development/production webpack"
+  // 只能设置node环境下的变量NODE_ENV
+}
+```
 
 ## plugins 插件
 - 用来执行范围更广的任务，包括打包优化，资源管理，注入环境变量等
@@ -197,4 +220,14 @@ source-map /
   }
 ```
 
-##
+
+## Babel
+- Babel是一个编译javascript的平台，可以把ES6，ES7，react等高级语法进行转移成ES5
+
+### babel一些安装包
+- @babel/core         编译的核心包
+- @babel/cli          能够从终端（命令行）使用的工具
+- @babel/preset-env   预设，也就是插件的集合
+- @babel/polyfill     垫片/腻子，用来模拟ES2015+的环境，方便使用一些内置的静态方法
+
+**我们使用 @babel/cli 从终端运行 Babel，利用 @babel/polyfill 来模拟所有新的 JavaScript 功能，而 env preset 只对我们所使用的并且目标浏览器中缺失的功能进行代码转换和加载 polyfill。**
