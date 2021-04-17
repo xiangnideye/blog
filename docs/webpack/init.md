@@ -26,7 +26,7 @@
   }
 ```
 
-## loader 模块
+## module 模块
 - webpack只能理解JavaScipt和JSON文件
 - loader能让webpack能够去处理其他类型的文件，并将它们转为有效模块
 - loader本质上是转换器，把任意类型的模块转换成JS模块  
@@ -110,3 +110,91 @@
 - px2rem-loader
 - lib-flexible
 - px2rem
+
+## devServer 开发基础配置
+- 用来配置一些开发环境的基础配置
+
+[官方链接：devServer](https://www.webpackjs.com/configuration/dev-server/#devserver)
+
+```js
+package.json: npm run start 启动的区别 
+  webpack4: "start": "webpack-dev-serve"  
+  webpack5: "start": "webpack serve"
+```
+
+```js
+  module.export = {
+    devServer: {
+      contentBase: resolve(__dirname, 'dist'), // 静态根目录
+      compress: true, //是否启动压缩
+      port: 8000, // 监听的端口号
+      open: true //是否自动打开浏览器  
+    },
+  }
+```
+
+## source-map
+
+- 是为了解决开发代码与实际代码不一致时帮助我们debug到原始代码的技术
+- webpack可以自动给我source-map文件，map文件是一种对应编译文件和源文件的方法
+
+**关键词**
+1. source-mapx - 4
+  - 产生.map文件(包含行，列信息)
+2. eval - 3
+  - 把代码通过eval包裹起来
+3. cheap - 1
+  - 不包含列信息，没有源文件映射。只有编译过后的代码
+4. module - 2
+  - 包含loader的source-map。可以找到源文件。可以找到源文件的信息
+5. inline
+  - 内嵌到打包后的文件里面
+6. hidden-source-map
+  - 隐藏，生产环境使用。可以生产map文件。但是不显示
+
+> devtool: 
+inline-source-map /
+cheap-source-map /
+cheap-module-source-map /
+eval-source-map /
+source-map /
+
+## 第三方插件引入
+
+- 1. 直接引入 每个文件都需要单独import 或者require 引入
+- 2. 插件引入 所以文件都可以用，但是window上没有
+- 3. expose-loader 可以把模块放到window上 
+- 4. html-webpack-externals-plugin 按需加载 文件中require第三方插件后，webpack会根据引入的第三方 动态插入链接
+
+```js
+  module.export = {
+    module: {
+      rules: [
+        {
+          test: require.resolve('lodash'),
+          loader: 'expose-loader',
+          options: {
+            exposes: {
+              globalName: '_',
+              override: true
+            }
+          }
+        }
+      ]
+    },
+    plugins: [
+      // 插件引入
+      new webpack.ProvidePlugin({
+        _: 'lodash',
+        $: 'jquery'
+      }),
+      new HtmlWebpackExternalsPlugin({
+        module: 'lodash',
+        entry: 'cdn',
+        global: '_'
+      })
+    ]
+  }
+```
+
+##

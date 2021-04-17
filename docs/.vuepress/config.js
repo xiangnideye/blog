@@ -98,10 +98,7 @@ module.exports = {
           collapsable: false,
           children: [
             'init',
-            'server',
             'loader',
-            'source-map',
-            'third'
           ]
         }
       ]
